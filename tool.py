@@ -1,10 +1,9 @@
 from openai import OpenAI
-
-client = OpenAI(api_key=os.environ["OPENAI_API_KEY"])
 import os
 import pandas as pd
 import time
 
+client = OpenAI(api_key=os.environ["OPENAI_API_KEY"])
 
 def get_completion(prompt, model="gpt-3.5-turbo"):
     messages = [{"role": "user", "content": prompt}]
