@@ -10,12 +10,20 @@ def get_completion(prompt, model="gpt-3.5-turbo"):
     return response.choices[0].message.content
 
 
-file = open('file.txt', 'r')
+file = open(sys.argv[1], 'r')
 Lines = file.readlines()
+
+prompt = """
+The lines follow this convention: The asterisk symbol (*) marks a main point.
+The o character (o) marks a subpoint that belongs to the main point above it.
+Given the following lines, generate 10 to 15 questions about the content of the lines.\n      
+         """ 
 
 count = 0
 for line in Lines:
     count += 1
-    print(get_completion(line.strip()))
+    prompt += line
+
+print(get_completion(prompt))
 
 file.close()
